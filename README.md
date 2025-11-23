@@ -72,12 +72,13 @@ Esta guía te ayudará a desplegar tu miniapp de Farcaster paso a paso.
 2. **Importa tu repositorio:**
    - Haz clic en **"Add New..."** → **"Project"**
    - Selecciona el repositorio `vaquita-fi/vaquita-celo`
-   - En la configuración del proyecto, busca **"Root Directory"**
-   - Haz clic en **"Edit"** y cambia el Root Directory a: `apps/web`
-   - Framework Preset: **Next.js** (debería detectarse automáticamente)
-   - Build Command: `pnpm build` (o déjalo vacío para usar el default)
-   - Output Directory: `.next` (default)
-   - Install Command: `pnpm install` (o déjalo vacío para usar el default)
+   - **⚠️ IMPORTANTE:** Antes de hacer clic en "Deploy", configura lo siguiente:
+     - Haz clic en **"Configure Project"** o busca **"Root Directory"**
+     - Cambia el **Root Directory** a: `apps/web` (esto es CRÍTICO para monorepos)
+     - Framework Preset: **Next.js** (debería detectarse automáticamente)
+     - Build Command: `pnpm build` (o déjalo vacío)
+     - Output Directory: `.next` (default)
+     - Install Command: `pnpm install` (o déjalo vacío)
 
 3. **Haz clic en "Deploy"**
 
@@ -112,8 +113,14 @@ Esta guía te ayudará a desplegar tu miniapp de Farcaster paso a paso.
    Vercel te dará una URL como `https://tu-proyecto.vercel.app`
 
 **⚠️ IMPORTANTE para Monorepos:**
-- El archivo `vercel.json` en la raíz del proyecto ya está configurado para ayudar a Vercel
-- Si aún tienes problemas, asegúrate de que en el **Dashboard de Vercel** → **Settings** → **General**, el **Root Directory** esté configurado como `apps/web`
+- El archivo `vercel.json` en la raíz ayuda con la configuración de build, pero **NO incluye `rootDirectory`** (esa propiedad no es válida en vercel.json)
+- **DEBES configurar el Root Directory manualmente en el Dashboard de Vercel:**
+  1. Ve a tu proyecto en Vercel
+  2. **Settings** → **General**
+  3. Busca la sección **"Root Directory"**
+  4. Haz clic en **"Edit"** y cambia a: `apps/web`
+  5. Guarda los cambios
+  6. Haz un nuevo deploy
 
 #### Paso 3: Configurar el dominio personalizado (Opcional)
 
