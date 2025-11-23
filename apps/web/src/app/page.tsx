@@ -89,6 +89,7 @@ export default function Home() {
             {/* Profile Avatar */}
             <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center overflow-hidden">
               {pfpUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
                 <img 
                   src={pfpUrl} 
                   alt="Profile" 
@@ -123,7 +124,7 @@ export default function Home() {
                 
                 try {
                   const result = await sdk.actions.addMiniApp();
-                  if (result.added) {
+                  if (result) {
                     setAddMiniAppMessage("✅ Miniapp added successfully!");
                   } else {
                     setAddMiniAppMessage("ℹ️ Miniapp was not added (user declined or already exists)");
