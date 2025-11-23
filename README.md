@@ -65,6 +65,27 @@ Esta guía te ayudará a desplegar tu miniapp de Farcaster paso a paso.
 
 #### Paso 2: Conectar con Vercel
 
+**Opción A: Usando el Dashboard de Vercel (Recomendado)**
+
+1. **Ve a [vercel.com](https://vercel.com)** e inicia sesión con tu cuenta de GitHub
+
+2. **Importa tu repositorio:**
+   - Haz clic en **"Add New..."** → **"Project"**
+   - Selecciona el repositorio `vaquita-fi/vaquita-celo`
+   - En la configuración del proyecto, busca **"Root Directory"**
+   - Haz clic en **"Edit"** y cambia el Root Directory a: `apps/web`
+   - Framework Preset: **Next.js** (debería detectarse automáticamente)
+   - Build Command: `pnpm build` (o déjalo vacío para usar el default)
+   - Output Directory: `.next` (default)
+   - Install Command: `pnpm install` (o déjalo vacío para usar el default)
+
+3. **Haz clic en "Deploy"**
+
+4. **Obtén tu URL de producción:**
+   Vercel te dará una URL como `https://tu-proyecto.vercel.app`
+
+**Opción B: Usando Vercel CLI**
+
 1. **Instala Vercel CLI (si no lo tienes):**
    ```bash
    npm i -g vercel
@@ -75,19 +96,24 @@ Esta guía te ayudará a desplegar tu miniapp de Farcaster paso a paso.
    vercel login
    ```
 
-3. **Despliega el proyecto:**
+3. **Despliega el proyecto desde la raíz:**
    ```bash
-   cd apps/web
    vercel
    ```
    
-   Sigue las instrucciones:
-   - ¿Quieres modificar la configuración? → **No**
+   Cuando te pregunte:
+   - ¿Quieres modificar la configuración? → **Sí**
    - ¿Qué directorio quieres desplegar? → **apps/web**
-   - ¿Quieres sobrescribir la configuración? → **No**
+   - Build Command → `pnpm build`
+   - Output Directory → `.next`
+   - Install Command → `pnpm install`
 
 4. **Obtén tu URL de producción:**
    Vercel te dará una URL como `https://tu-proyecto.vercel.app`
+
+**⚠️ IMPORTANTE para Monorepos:**
+- El archivo `vercel.json` en la raíz del proyecto ya está configurado para ayudar a Vercel
+- Si aún tienes problemas, asegúrate de que en el **Dashboard de Vercel** → **Settings** → **General**, el **Root Directory** esté configurado como `apps/web`
 
 #### Paso 3: Configurar el dominio personalizado (Opcional)
 
